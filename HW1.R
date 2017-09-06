@@ -18,5 +18,4 @@ lm( gpa$Y ~ gpa$X)
 plot(gpa$X,gpa$Y)
 abline(lm( gpa$Y ~ gpa$X), col="red")
 
-b0+b1*30
-
+#http://rstudio-pubs-static.s3.amazonaws.com/15567_5ce6b04eb0b247448f0fd4a10feb0efa.html
