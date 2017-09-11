@@ -1,6 +1,7 @@
 # Confidence Interval
 b1=4;b0=10.2
 ablm<-function(X){ X*b1+b0 }
+
 Xh=4
 
 Yh=ablm(Xh);Yh
@@ -73,8 +74,35 @@ cl<-qt(1-alpha,n-2);cl
 
 Yh-cl*s;Yh+cl*s
 
+###################   Regression Line Band
+
+Xh=2
+Yh=ablm(Xh);Yh
+n<-nrow(ab);n
+
+ss<-MSE*((1/n) + ( (Xh-Xbar)^2 )/(sum((ab$X-Xbar)^2)));ss
+s<-sqrt(ss);s
+
+#confidence level?
+CL<-.99
+alpha<-(1-CL)/2;alpha
+WW<-2*qf(CL,2,n-2);WW
+
+Yh
+Yh-sqrt(WW)*s;Yh+sqrt(WW)*s
 
 
+Xh=4
+Yh=ablm(Xh);Yh
+n<-nrow(ab);n
 
+ss<-MSE*((1/n) + ( (Xh-Xbar)^2 )/(sum((ab$X-Xbar)^2)));ss
+s<-sqrt(ss);s
 
+#confidence level?
+CL<-.99
+alpha<-(1-CL)/2;alpha
+WW<-2*qf(CL,2,n-2);WW
 
+Yh
+Yh-sqrt(WW)*s;Yh+sqrt(WW)*s
