@@ -1,7 +1,6 @@
 # Confidence Interval
 b1=4;b0=10.2
 ablm<-function(X){ X*b1+b0 }
-
 Xh=4
 
 Yh=ablm(Xh);Yh
