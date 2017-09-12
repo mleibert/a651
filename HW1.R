@@ -15,7 +15,7 @@ b1<-sum((gpa$X-mean(gpa$X))*(gpa$Y-mean(gpa$Y)))/sum( (gpa$X-mean(gpa$X))^2 )
 b1
 b0<- mean(gpa$Y)-b1*mean(gpa$X)
 b0 
-lm( gpa$Y ~ gpa$X)
+as.numeric(lm( gpa$Y ~ gpa$X)[[1]][1])
 
 #b
 plot(gpa$X,gpa$Y)
@@ -59,8 +59,8 @@ mean(ab$Y)
 
 #1.23
 #a
-gpa$residuals<- (gpa$Y - (b1* gpa$X + b0 ) )
-sum(gpa$residuals)		#Yes to 1.17
+gpa$ei<- (gpa$Y - (b1* gpa$X + b0 ) )
+sum(gpa$ei)		#Yes to 1.17
 
 #b
 gpa$SE<-gpa$residuals^2
@@ -81,14 +81,20 @@ ab$residuals[1]	#the error (e) involves the vertical derivation of Y_i from
 			#and is known.
 
 #b
-ab$SSE<- ab$residuals^2/(n-2)
+ablm <- function(X ){  4*X+10.2 }
+ab$Ybar<-ablm(ab$X)
+ab$ei<-ab$Y-ab$Ybar
+ab$eiei<-(ab$Y-ab$Ybar)^2
+sum(ab$eiei)/(nrow(ab)-2)
+
+paste0(ab$Y,"-",ab$Ybar)
+
 sum(ab$SSE)
 anova(lm( ab$Y ~ ab$X))
 sqrt(sum(ab$SSE))	#MSE is an unbiased estimator of s^2 
 
 #2.15
 n=nrow(ab)
-ablm <- function(X ){  4*X+10.2 }
 ab$Yhat<-4*ab$X + 10.2
 Xh=2
 sqrt( ( sum(ab$residuals^2)/(n-2) )* (1/n + ( (Xh-mean(ab$X))^2 /
