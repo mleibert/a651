@@ -14,6 +14,7 @@ b0<-as.numeric(lm(gpa$Y~gpa$X)[[1]][1]) ;b0
 b1<-as.numeric(lm(gpa$Y~gpa$X)[[1]][2]) ;b1
 gpalm<-function(X){X*b1+b0 }
 
+
 n=nrow(gpa)
 gpa$ei<-(gpa$Y-gpalm(gpa$X))
 sum(gpa$ei)
@@ -22,4 +23,7 @@ MSE<-sum(gpa$eiei)/(n-2);MSE
 gpa$SR<-(gpalm(gpa$X)-mean(gpa$Y))^2
 SSR<-sum(gpa$SR);SSR
 
+#a
 anova(lm(gpa$Y~gpa$X))
+
+#b
