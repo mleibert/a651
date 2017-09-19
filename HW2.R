@@ -140,9 +140,11 @@ par(mfrow=c(1,2))
 plot(ph[,2],ph[,1],ylim=c(min(ph$Y),max(ph$Y)),
 	xlim=c(min(ph$X)-1,max(ph$X)+1) );abline( lm(ph$Y~ph$X),col="red" )
 
+par(c(1,2))
+plot(ph$X,ph$Y)
 plot(ph$X,ph$Y)
 
-points(ph[,2],ph.lm(ph$X)-mean(ph[,1]))
+points(ph[,2],ph.lm(ph$X)-mean(ph[,1]) )
 
 
 #d
@@ -187,7 +189,6 @@ qqnorm(gpa$ei)
 
 #d
 gpa$eiRank<-rank(gpa$ei)
-
 gpa$Eoei<-MSE*(qnorm(	(  (gpa$eiRank-.375) / (n.gpa+.25) )	))
 cor(gpa$ei,gpa$Eoei)
 
